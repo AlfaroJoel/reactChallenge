@@ -1,0 +1,17 @@
+.heroCard__Delete{
+    width: 80%;
+    margin: 10%;
+}
+
+.heroCard{
+    width: 17rem;
+}
+
+@media (min-width: 990px){
+    .heroCard__Delete{
+        width: 12rem;
+    }
+    .heroCard{
+        width: 14rem;
+    }
+}

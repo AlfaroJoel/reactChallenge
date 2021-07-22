@@ -1,0 +1,22 @@
+.heroSearch{
+    height: 90vh;
+    display: grid;
+    grid-template: 10vh 80vh / 100%;
+    justify-content: center;
+}
+.heroSearch__card{
+    display: flex;
+    justify-content: center;
+}
+.heroSearch__form{
+    margin: auto;
+}
+
+@media (min-width: 990px){
+    .heroSearch{
+        grid-template: 100% / 50% 50%;
+    }
+    .heroSearch__form{
+        width: 20rem;
+    }
+}
