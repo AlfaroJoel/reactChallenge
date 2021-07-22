@@ -1,34 +1,48 @@
+import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import OptionsCard from './OptionsCard'
-
+import HeroContext from '../../store/HeroContext';
 import './HeroCard.css'
 
-const HeroCard = props => {
+const HeroCard = ({hero, isCardDelete}) => {
+
+    const ctx = useContext(HeroContext);
+
+    const addHeroHandler = () => {
+        ctx.addHero(hero);
+    }
+
+    const removeHeroHandler = () => {
+        ctx.deleteHero(hero.id);
+    }
 
     return (
-        <Card className={props.isCardDelete ?  'heroCard__Delete' : 'heroCard'}>
-            <Card.Img variant="top" src={props.image.url} />
+        <Card className={isCardDelete ?  'heroCard__Delete' : 'heroCard'}>
+            <Card.Img variant="top" src={hero.image.url} />
             <Card.Body>
-                <Card.Title>{props.name}</Card.Title>
+                <Card.Title>{hero.name}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroupItem>
-                    Intelligence: {props.powerstats.intelligence}
+                    Intelligence: {hero.powerstats.intelligence}
                     <br></br>
-                    Strength: {props.powerstats.strength}
+                    Strength: {hero.powerstats.strength}
                     <br></br>
-                    Speed: {props.powerstats.speed}
+                    Speed: {hero.powerstats.speed}
                     <br></br>
-                    Durability: {props.powerstats.durability}
+                    Durability: {hero.powerstats.durability}
                     <br></br>
-                    Power: {props.powerstats.power}
+                    Power: {hero.powerstats.power}
                     <br></br>
-                    Combat: {props.powerstats.combat}
+                    Combat: {hero.powerstats.combat}
                     <br></br>
                 </ListGroupItem>
-                <OptionsCard isCardDelete={props.isCardDelete}/>
+                <OptionsCard 
+                    isCardDelete={isCardDelete}
+                    onClick={isCardDelete ? removeHeroHandler : addHeroHandler}
+                />
             </ListGroup>
         </Card>
     )

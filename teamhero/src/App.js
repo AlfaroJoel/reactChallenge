@@ -1,48 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Route } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+
+import HeroContext from './store/HeroContext'
 import Header from './components/Layout/Header';
 import HeroCard from './components/Card/HeroCard';
-import HeroSearch from './pages/HeroSearch'
+import HeroSearch from './pages/HeroSearch';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
-  const urlBase = 'https://www.superheroapi.com/api.php/';
-  const token = 104060338637111;
-  const endPoint = urlBase + token;
-
-  const [listHeroes, setListHeroes] = useState([]);
-
-  useEffect(async () => {
-    try {
-      const response = await fetch(endPoint + '/545');
-      if (!response.ok) {
-        throw new Error('Something went wrong!')
-      }
-
-      const { id, name, powerstats, appearance, work, image } = await response.json();
-
-      setListHeroes((prevState) => [...prevState, { id, name, powerstats, appearance, work, image }]);
-
-    } catch (err) {
-      console.log(err);
-    }
-  }, [])
+  const ctx = useContext(HeroContext);
 
   return (
     <div className="App">
       <Header />
       <Route path='/home'>
         <section className='App__team'>
-          {listHeroes.map((hero) => {
-            return <HeroCard 
-              key={hero.id} 
-              name={hero.name} 
-              powerstats={hero.powerstats} 
-              image={hero.image} 
-              isCardDelete={true}
-            />
-          })}
+          {console.log(ctx.heroTeam)}
         </section>
       </Route>
       <Route path='/search'>

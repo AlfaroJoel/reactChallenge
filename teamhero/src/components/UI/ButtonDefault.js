@@ -4,6 +4,7 @@ const ButtonDefault = props => {
     return (
         <Button variant={props.variant} onClick={props.onClick}>
             {props.content}
+            {console.log('entre')}
         </Button>
     )
 }

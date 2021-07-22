@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import HeroCard from '../components/Card/HeroCard'
 import Form from 'react-bootstrap/Form';
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
+import Carousel from '../components/UI/Carousel';
 import './HeroSearch.css'
 
 const HeroSearch = props => {
@@ -10,24 +10,10 @@ const HeroSearch = props => {
     const token = 104060338637111;
     const endPoint = urlBase + token;
 
-    const [foundHero, setFoundHero] = useState(null);
+    const [foundHeroes, setFoundHeroes] = useState(null);
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        const searchTime = setTimeout(async () => {
-            const hero = await callApiHero();
-            setIsLoading(false);
-            if(hero){
-                setFoundHero([hero]);
-            }
-        }, 750)
-
-        return () => {
-            clearTimeout(searchTime);
-        }
-    }, [search])
-
+    
     const callApiHero = async () => {
         setIsLoading(true);
         try {
@@ -36,15 +22,30 @@ const HeroSearch = props => {
                 throw new Error('Something went wrong!')
             }
             const data = await response.json();
-            if(data.response != 'error'){
-                const { id, name, powerstats, appearance, work, image } = data.results[0];
-                return {id, name, powerstats, appearance, work, image};
+            if (data.response !== 'error') {
+                return data.results;
+            } else {
+                setFoundHeroes(null)
             }
 
         } catch (err) {
             console.log(err);
         }
     }
+
+    useEffect(() => {
+        const searchTime = setTimeout(async () => {
+            const heroesFound = await callApiHero();
+            if (heroesFound) {
+                setFoundHeroes(heroesFound);
+            }
+            setIsLoading(false);
+        }, 650)
+
+        return () => {
+            clearTimeout(searchTime);
+        }
+    }, [search])
 
     const formSearchHandler = (e) => {
         setSearch(e.target.value);
@@ -53,20 +54,12 @@ const HeroSearch = props => {
     return (
         <div className='heroSearch'>
             <div className='heroSearch__form'>
-                <h1>Find your Favorite superhero and add him to your team!</h1>
-                <Form.Control type="text" placeholder="Search Hero" size='lg' onChange={formSearchHandler}/>
+                <h2 className='form__h2'>Find your Favorite Superhero and add him to your Team!</h2>
+                <Form.Control type="text" placeholder="Search Hero" size='lg' onChange={formSearchHandler} />
             </div>
             <div className='heroSearch__card'>
-                {isLoading &&  search != '' && <Spinner animation="border" variant="primary" />}
-                {foundHero && !isLoading && search != '' && foundHero.map((hero) => {
-                    return <HeroCard 
-                        key={hero.id} 
-                        name={hero.name} 
-                        powerstats={hero.powerstats} 
-                        image={hero.image} 
-                        isCardDelete={false}
-                    />
-                })}
+                {isLoading && search !== '' && <Spinner animation="border" variant="primary" />}
+                {foundHeroes && !isLoading && <Carousel foundHeroes={foundHeroes} />}
             </div>
         </div>
     )

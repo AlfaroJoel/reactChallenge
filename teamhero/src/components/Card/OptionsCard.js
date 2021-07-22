@@ -21,6 +21,7 @@ const OptionsCard = props => {
             <ButtonDefault
                 variant={props.isCardDelete ? 'outline-danger' : 'outline-primary'}
                 content={props.isCardDelete ? svgDelet : svgAdd}
+                onClick={props.onClick}
             />
             <ButtonDefault
                 variant='outline-warning'
