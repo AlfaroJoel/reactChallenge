@@ -8,7 +8,7 @@ const Powerstats = props => {
     const ctx = useContext(HeroContext);
 
     const [show, setShow] = useState(false);
-    const [powerstats, setPowerstats] = useState([])
+    
 
     const handleClick = () => {
         setShow(!show);
@@ -20,10 +20,16 @@ const Powerstats = props => {
                 <Modal.Header>
                     <Modal.Title>Powerstats</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className='text-center'>
-                    <p>Intelligence: {}</p>
-                    <p>Intelligence: 80</p>
-                    <p>Intelligence: 80</p>
+                <Modal.Body className='text-start mx-auto'>
+                    {ctx.powerstats.map((stat) => {
+                        return (<p key={stat.prop}>
+                           <span className='stats'>{stat.prop}</span> {': ' + stat.value}
+                        </p>)
+                    })}
+                </Modal.Body>
+                <Modal.Body className='average'>
+                    <p><span>Average height: </span>{ctx.averHeight.toFixed(2)} cm</p>
+                    <p><span>Average weight: </span>{ctx.averWeight.toFixed(2)} kg</p>
                 </Modal.Body>
                 <Button variant="dark" onClick={handleClick}>
                     Close
