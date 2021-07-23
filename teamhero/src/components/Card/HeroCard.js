@@ -18,9 +18,11 @@ const HeroCard = ({hero, isCardDelete}) => {
         ctx.deleteHero(hero.id);
     }
 
+    const alignment = hero.biography.alignment === 'good' ? 'alignmentGood' : 'alignmentBad';
+
     return (
-        <Card className={isCardDelete ?  'heroCard__Delete' : 'heroCard'}>
-            <Card.Img variant="top" src={hero.image.url} />
+        <Card className={isCardDelete ?  'heroCard__Delete card '+alignment : 'heroCard card '+alignment}>
+            <Card.Img variant="top" src={hero.image.url} className='cardImg' />
             <Card.Body>
                 <Card.Title>{hero.name}</Card.Title>
             </Card.Body>

@@ -1,16 +1,4 @@
 .App {
+  height: 100vh;
   text-align: center;
-}
-.App__team{
-  height: 90vh;
-  display:grid;
-  grid-template: auto / 100%;
-}
-
-@media (min-width: 990px){
-  .App__team{
-    grid-template: 100% /  repeat(6, 16%);
-    justify-content: center;
-    align-items: center;
-  }
 }

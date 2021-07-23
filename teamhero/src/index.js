@@ -6,9 +6,9 @@ import './index.css';
 import App from './App';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <HeroContextProvider>
-            <App />
-        </HeroContextProvider>
-    </BrowserRouter>,
+    <HeroContextProvider>
+        <BrowserRouter>
+                <App />
+        </BrowserRouter>
+    </HeroContextProvider>,
     document.getElementById('root'));
