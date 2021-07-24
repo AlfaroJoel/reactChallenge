@@ -15,7 +15,7 @@ const Header = () => {
                     <Nav>
                         <NavLink className='link m-auto mx-4' to="/home">My Team</NavLink>
                         <NavLink className='link m-auto mx-4' to="/search">Search Hero</NavLink>
-                        <Button className='mx-5' variant="outline-light">Logout</Button>
+                        <NavLink to='/'><Button className='mx-5' variant="outline-light">Logout</Button></NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

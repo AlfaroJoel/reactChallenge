@@ -1,0 +1,13 @@
+.loginPage{
+    height: 85vh;
+    text-align: start;
+}
+
+@media (min-width: 990px){
+    .loginPage{
+    }
+}
+
+label{
+    font-size: 1.2rem;
+}

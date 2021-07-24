@@ -12,7 +12,6 @@ function HomePage() {
 
     return (
         <div>
-            {console.log(ctx.powerstats)}
             <Container fluid className='my-3'>
             <Row>
               {ctx.heroTeam && ctx.heroTeam.length > 0 && ctx.heroTeam.map((hero) => {

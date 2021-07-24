@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HeroContext = React.createContext({
     heroTeam: [],
@@ -12,92 +12,68 @@ const HeroContext = React.createContext({
 })
 
 export const HeroContextProvider = (props) => {
-    const [heroTeam, setHeroTeam] = useState([]);
+    const [teamHero, setTeamHero] = useState([]);
     const [badHeroes, setBadHeroes] = useState(0);
     const [goodHeroes, setGoodHeroes] = useState(0);
     const [averHeight, setAverHeight] = useState(0);
     const [averWeight, setAverWeight] = useState(0);
-    const [powerstats, setPowerstats] = useState([
-        { prop: 'intelligence', value: 0 },
-        { prop: 'strength', value: 0 },
-        { prop: 'speed', value: 0 },
-        { prop: 'durability', value: 0 },
-        { prop: 'power', value: 0 },
-        { prop: 'combat', value: 0 }
-    ])
+    const [powerstats, setPowerstats] = useState([])
 
-    const checkAddHero = (hero) => {
-        const alignment = hero.biography.alignment;
-        if (heroTeam.length < 6) {
-            for (let actualhero in heroTeam) {
-                if (heroTeam[actualhero].id === hero.id) {
-                    console.log('No puedes agregar el mismo personaje dos veces')
-                    return false;
-                }
-            }
-            if ((alignment === 'good' || alignment === 'neutral') && goodHeroes < 3) {
-                return true;
-            } else if (alignment === 'bad' && badHeroes < 3) {
-                return true;
-            } else {
-                console.log('Ya tienes 3 superheroes ', alignment);
-                return false;
-            }
-        } else {
-            console.log('Tu equipo esta completo (maximo 6)');
-            return false;
-        }
-    }
+    useEffect(() => {
+        updatePowerstats();
+    }, [teamHero])
 
-    const updateStatistics = (hero) => {
-        let arrayPowerstats = []
-        for (let powerstat in powerstats) {   //recorro todo el state powerstats
-            const props = powerstats[powerstat].prop;
-            const stat = {  //declaro la prop, y sumo el valor actual del state mas el de hero
-                prop: props, value: powerstats[powerstat].value += parseInt(hero.powerstats[props])
-            }
-            arrayPowerstats.push(stat);
-        }
-        arrayPowerstats.sort((a, b) => { //ordeno array
+    const updatePowerstats = () => {
+        let defaultPowerstats = [
+            { prop: 'intelligence', value: 0 },
+            { prop: 'strength', value: 0 },
+            { prop: 'speed', value: 0 },
+            { prop: 'durability', value: 0 },
+            { prop: 'power', value: 0 },
+            { prop: 'combat', value: 0 }
+        ];
+        teamHero.map((item) => {
+            defaultPowerstats.map((stat) => {
+                stat.value += parseInt(item.powerstats[stat.prop])
+            })
+        })
+        defaultPowerstats.sort((a, b) => {
             return b.value - a.value
         })
-        setPowerstats(arrayPowerstats);
-
-        const heroHeight = parseInt(hero.appearance.height[1].split(' ')[0]);
-        const heroWeight = parseInt(hero.appearance.weight[1].split(' ')[0]);
-        setAverHeight(((averHeight + heroHeight) / (heroTeam.length + 1)));
-        setAverWeight(((averWeight + heroWeight) / (heroTeam.length + 1)));
+        setPowerstats(defaultPowerstats);
     }
 
     const addHeroTeam = (hero) => {
         const alignment = hero.biography.alignment;
 
-        if (checkAddHero(hero)) {
-            setHeroTeam((prevState) => {
-                return [...prevState, hero]
-            })
-            if (alignment === 'good' || alignment === 'neutral') {
-                setGoodHeroes(goodHeroes + 1);
-                console.log(hero.name + ' successfully added to your team, Hero good: ', goodHeroes + 1, ' total Team: ', heroTeam.length + 1)
-            } else {
-                setBadHeroes(badHeroes + 1);
-                console.log(hero.name + ' successfully added to your team, Hero bad: ', badHeroes + 1, ' total Team: ', heroTeam.length + 1)
-            }
-            updateStatistics(hero);
+        setTeamHero((prevState) => {
+            return [...prevState, hero]
+        })
+        if (alignment === 'good' || alignment === 'neutral') {
+            setGoodHeroes(goodHeroes + 1);
+            console.log(hero.name + ' successfully added to your team, Hero good: ', goodHeroes + 1, ' total Team: ', teamHero.length + 1)
+        } else {
+            setBadHeroes(badHeroes + 1);
+            console.log(hero.name + ' successfully added to your team, Hero bad: ', badHeroes + 1, ' total Team: ', teamHero.length + 1)
         }
     }
 
-    const deleteHeroTeam = (id) => {
-        setHeroTeam((prevState) => {
-            return prevState.filter((hero) => hero.id !== id)
+    const deleteHeroTeam = (hero) => {
+        setTeamHero((prevState) => {
+            return prevState.filter((h) => h.id !== hero.id)
         })
+        if (hero.biography.alignment === 'good' || hero.biography.alignment === 'neutral') {
+            setGoodHeroes(goodHeroes - 1);
+        } else {
+            setBadHeroes(badHeroes - 1);
+        }
     }
 
 
 
     return <HeroContext.Provider
         value={{
-            heroTeam,
+            heroTeam: teamHero,
             addHero: addHeroTeam,
             deleteHero: deleteHeroTeam,
             goodHeroes,

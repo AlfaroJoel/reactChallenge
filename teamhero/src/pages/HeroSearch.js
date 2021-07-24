@@ -13,6 +13,7 @@ const HeroSearch = props => {
     const [foundHeroes, setFoundHeroes] = useState(null);
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
     
     const callApiHero = async () => {
         setIsLoading(true);
@@ -40,6 +41,7 @@ const HeroSearch = props => {
                 setFoundHeroes(heroesFound);
             }
             setIsLoading(false);
+            setError('');
         }, 650)
 
         return () => {
@@ -51,15 +53,20 @@ const HeroSearch = props => {
         setSearch(e.target.value);
     }
 
+    const errorHandler = (body) => {
+        setError(body);
+    }
+
     return (
         <div className='heroSearch'>
             <div className='heroSearch__form'>
                 <h2 className='form__h2'>Find your Favorite Superhero and add him to your Team!</h2>
                 <Form.Control type="text" placeholder="Search Hero" size='lg' onChange={formSearchHandler} />
+                <p class='error'>{error}</p>
             </div>
             <div className='heroSearch__card'>
                 {isLoading && search !== '' && <Spinner animation="border" variant="primary" />}
-                {foundHeroes && !isLoading && <Carousel foundHeroes={foundHeroes} />}
+                {foundHeroes && !isLoading && <Carousel foundHeroes={foundHeroes} errorHandler={errorHandler}/>}
             </div>
         </div>
     )

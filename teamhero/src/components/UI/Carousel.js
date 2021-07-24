@@ -11,7 +11,7 @@ const svgNext = <svg width="10" height="19" viewBox="0 0 10 19" fill="none" xmln
     <path d="M9.70531 10.1961L2.41741 18.1672C2.06593 18.5516 1.49608 18.5516 1.14463 18.1672L0.294613 17.2375C-0.0562748 16.8537 -0.0569497 16.2317 0.293113 15.847L6.0689 9.49999L0.293113 3.15303C-0.0569497 2.76834 -0.0562748 2.14634 0.294613 1.76256L1.14463 0.832855C1.49611 0.448415 2.06596 0.448415 2.41741 0.832855L9.70527 8.80395C10.0568 9.18835 10.0568 9.81163 9.70531 10.1961Z" fill="black" />
 </svg>
 
-const Carousel = ({ foundHeroes }) => {
+const Carousel = ({ foundHeroes, errorHandler }) => {
     const [numHero, setNumHero] = useState(0);
 
     const nextHeroHandler = () => {
@@ -31,10 +31,10 @@ const Carousel = ({ foundHeroes }) => {
             {foundHeroes && (foundHeroes.length > 1
                 ? (<>
                     <ButtonDefault variant='outline-secondary' onClick={previousHeroHandler} content={svgPrevious} />
-                    <HeroCard key={foundHeroes[numHero].id} hero={foundHeroes[numHero]} isCardDelete={false} />
+                    <HeroCard hero={foundHeroes[numHero]} isCardDelete={false} errorHandler={errorHandler}/>
                     <ButtonDefault variant='outline-secondary' onClick={nextHeroHandler} content={svgNext} />
                 </>)
-                : <HeroCard key={foundHeroes[0].id} hero={foundHeroes[0]} isCardDelete={false}/>)
+                : <HeroCard key={foundHeroes[0].id} hero={foundHeroes[0]} isCardDelete={false} errorHandler={errorHandler}/>)
             }
         </>
     )
