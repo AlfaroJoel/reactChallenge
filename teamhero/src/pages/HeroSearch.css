@@ -1,5 +1,5 @@
 .heroSearch{
-    height: 90vh;
+    height: 88vh;
     display: grid;
     grid-template: 13vh auto / 100vw;
 }
@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    max-height: 90vh;
+    max-height: 88vh;
     overflow: hidden;
 }
 .heroSearch__form{
@@ -24,11 +24,16 @@
     margin-bottom: 0;
     color: rgb(218, 14, 14);
 }
+.correctly{
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: rgb(14, 218, 58);
+}
 
 @media (min-width: 990px){
     .heroSearch{
-        height: 91vh;
-        max-height: 91vh;
+        height: 88vh;
+        max-height: 88vh;
         display: grid;
         grid-template: 100% / 50% 50%;
         justify-content: center;

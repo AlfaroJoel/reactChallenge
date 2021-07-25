@@ -26,6 +26,7 @@ const OptionsCard = props => {
             <ButtonDefault
                 variant='outline-warning'
                 content={svgMore}
+                onClick={props.onClickDetails}
             />
         </div>
     )

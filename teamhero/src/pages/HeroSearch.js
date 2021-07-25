@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Carousel from '../components/UI/Carousel';
 import './HeroSearch.css'
 
-const HeroSearch = props => {
+const HeroSearch = () => {
 
     const urlBase = 'https://www.superheroapi.com/api.php/';
     const token = 104060338637111;
@@ -13,7 +13,8 @@ const HeroSearch = props => {
     const [foundHeroes, setFoundHeroes] = useState(null);
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
+    const [err, setErr] = useState(false);
     
     const callApiHero = async () => {
         setIsLoading(true);
@@ -35,26 +36,30 @@ const HeroSearch = props => {
     }
 
     useEffect(() => {
-        const searchTime = setTimeout(async () => {
-            const heroesFound = await callApiHero();
-            if (heroesFound) {
-                setFoundHeroes(heroesFound);
+        if(search !== '') {
+            const searchTime = setTimeout(async () => {
+                const heroesFound = await callApiHero();
+                if (heroesFound) {
+                    setFoundHeroes(heroesFound);
+                }
+                setIsLoading(false);
+                setMessage('');
+            }, 650)
+    
+            return () => {
+                clearTimeout(searchTime);
             }
-            setIsLoading(false);
-            setError('');
-        }, 650)
-
-        return () => {
-            clearTimeout(searchTime);
         }
     }, [search])
 
     const formSearchHandler = (e) => {
+        messageHandler('',false)
         setSearch(e.target.value);
     }
 
-    const errorHandler = (body) => {
-        setError(body);
+    const messageHandler = (body, err) => {
+        setErr(err);
+        setMessage(body);
     }
 
     return (
@@ -62,11 +67,11 @@ const HeroSearch = props => {
             <div className='heroSearch__form'>
                 <h2 className='form__h2'>Find your Favorite Superhero and add him to your Team!</h2>
                 <Form.Control type="text" placeholder="Search Hero" size='lg' onChange={formSearchHandler} />
-                <p class='error'>{error}</p>
+                <p className={err ? 'error' : 'correctly'}>{message}</p>
             </div>
             <div className='heroSearch__card'>
                 {isLoading && search !== '' && <Spinner animation="border" variant="primary" />}
-                {foundHeroes && !isLoading && <Carousel foundHeroes={foundHeroes} errorHandler={errorHandler}/>}
+                {foundHeroes && !isLoading && <Carousel foundHeroes={foundHeroes} messageHandler={messageHandler}/>}
             </div>
         </div>
     )

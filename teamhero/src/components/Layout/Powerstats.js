@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState} from "react";
 import HeroContext from "../../store/HeroContext";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
@@ -35,7 +35,7 @@ const Powerstats = props => {
                     Close
                 </Button>
             </Modal>
-            <Button onClick={handleClick} variant='dark' size="lg">Powerstats</Button>
+            <Button onClick={handleClick} variant='warning' size="lg">Powerstats</Button>
         </div>
     )
 }
