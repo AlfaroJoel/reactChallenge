@@ -65,7 +65,6 @@ const HeroCard = ({ hero, isCardDelete, messageHandler }) => {
                         Hair Color: {hero.appearance['hair-color']}
                         <br></br>
                         Work: {hero.work.base}
-                        {console.log(hero)}
                     </ListGroupItem>
                     : <ListGroupItem>
                         Intelligence: {hero.powerstats.intelligence}

@@ -15,8 +15,7 @@ export const HeroContextProvider = (props) => {
     const [teamHero, setTeamHero] = useState([]);
     const [badHeroes, setBadHeroes] = useState(0);
     const [goodHeroes, setGoodHeroes] = useState(0);
-    const [averHeight, setAverHeight] = useState(0);
-    const [averWeight, setAverWeight] = useState(0);
+    const [statistics, setStatistics] = useState([]);
     const [powerstats, setPowerstats] = useState([])
 
     useEffect(() => {
@@ -32,15 +31,31 @@ export const HeroContextProvider = (props) => {
             { prop: 'power', value: 0 },
             { prop: 'combat', value: 0 }
         ];
+
+        let defaultStadis = [
+            {prop: 'height', value: 0},
+            {prop: 'weight', value: 0}
+        ]
+
         teamHero.map((item) => {
             defaultPowerstats.map((stat) => {
                 stat.value += parseInt(item.powerstats[stat.prop])
             })
+            defaultStadis.map((stat) => {
+                stat.value += parseInt(item.appearance[stat.prop][1].split(' ')[0]);
+            })
         })
+
+        if(teamHero.length > 0){
+            defaultStadis[0].value = (defaultStadis[0].value / teamHero.length).toFixed(2);
+            defaultStadis[1].value = (defaultStadis[1].value / teamHero.length).toFixed(2);
+        }
+
         defaultPowerstats.sort((a, b) => {
             return b.value - a.value
         })
         setPowerstats(defaultPowerstats);
+        setStatistics(defaultStadis);
     }
 
     const addHeroTeam = (hero) => {
@@ -78,9 +93,8 @@ export const HeroContextProvider = (props) => {
             deleteHero: deleteHeroTeam,
             goodHeroes,
             badHeroes,
-            powerstats: powerstats,
-            averHeight: averHeight,
-            averWeight: averWeight
+            powerstats,
+            statistics
         }}
     >
         {props.children}

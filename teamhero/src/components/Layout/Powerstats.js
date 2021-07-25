@@ -28,8 +28,8 @@ const Powerstats = props => {
                     })}
                 </Modal.Body>
                 <Modal.Body className='average'>
-                    <p><span>Average height: </span>{ctx.averHeight.toFixed(2)} cm</p>
-                    <p><span>Average weight: </span>{ctx.averWeight.toFixed(2)} kg</p>
+                    <p><span>Average height: </span>{ctx.statistics[0].value} cm</p>
+                    <p><span>Average weight: </span>{ctx.statistics[1].value} kg</p>
                 </Modal.Body>
                 <Button variant="dark" onClick={handleClick}>
                     Close

@@ -22,7 +22,7 @@ const Header = () => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/home">TeamHero</Navbar.Brand>
+                <Navbar.Brand>TeamHero</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className='justify-content-end' id="basic-navbar-nav">
                     <Nav  className='align-items-center'>
