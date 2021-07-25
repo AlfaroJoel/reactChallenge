@@ -1,6 +1,5 @@
 .card{
     width: 12rem;
-    margin: 20px auto;
 }
 .alignmentBad{
     box-shadow: 2px 2px 10px 2px rgb(168, 25, 25);
@@ -8,14 +7,6 @@
 .alignmentGood{
     box-shadow: 2px 2px 10px 2px rgb(25, 168, 56);
 }
-
 .cardImg{
-    max-height: 253px;
-}
-
-@media (min-width: 990px){
-    .card{
-        width: 12em;
-        margin: auto;
-    }
+    max-height: 220px;
 }

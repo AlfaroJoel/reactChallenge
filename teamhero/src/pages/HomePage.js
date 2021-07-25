@@ -2,30 +2,29 @@ import { useContext } from 'react';
 import HeroContext from '../store/HeroContext'
 import HeroCard from '../components/Card/HeroCard';
 import Powerstats from '../components/Layout/Powerstats';
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Header from '../components/Layout/Header';
 
 function HomePage() {
 
     const ctx = useContext(HeroContext);
 
     return (
-        <div>
-            <Container fluid className='my-3'>
-            <Row>
+        <>
+            <Header />
+            <div className='my-3 container-fluid'>
+            <div className='row'>
               {ctx.heroTeam && ctx.heroTeam.length > 0 && ctx.heroTeam.map((hero) => {
-                return <Col key={hero.id}>
+                return <div className='col' key={hero.id}>
                   <HeroCard
                     hero={hero}
                     isCardDelete={true}
                   />
-                </Col>
+                </div>
               })}
-            </Row>
+            </div>
             <Powerstats />
-          </Container>
-        </div>
+          </div>
+        </>
     )
 }
 

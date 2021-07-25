@@ -46,7 +46,7 @@ const HeroCard = ({ hero, isCardDelete, messageHandler }) => {
     }
 
     return (
-        <Card className={isCardDelete ? 'heroCard__Delete card ' + classCard : 'heroCard card ' + classCard}>
+        <Card className={isCardDelete ? 'heroCard__Delete card mb-2 mx-auto ' + classCard : 'heroCard card mb-2 mx-auto ' + classCard}>
             <Card.Img variant="top" src={hero.image.url} className='cardImg' />
             <Card.Body>
                 <Card.Title>{hero.name}</Card.Title>

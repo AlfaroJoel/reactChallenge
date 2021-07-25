@@ -2,7 +2,12 @@
     text-decoration: none;
     color: #fff;
 }
-
 .active{
     color: #1673FD;
+}
+.navbar-sticky{
+    width: 100%;
+    position: sticky !important;
+    top: 0;
+    z-index: 1;
 }

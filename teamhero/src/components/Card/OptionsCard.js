@@ -1,5 +1,4 @@
 import ButtonDefault from '../UI/ButtonDefault';
-import './OptionsCard.css';
 
 const OptionsCard = props => {
 
@@ -17,7 +16,7 @@ const OptionsCard = props => {
     
 
     return (
-        <div className='options'>
+        <div className='d-flex justify-content-around my-2'>
             <ButtonDefault
                 variant={props.isCardDelete ? 'outline-danger' : 'outline-primary'}
                 content={props.isCardDelete ? svgDelet : svgAdd}

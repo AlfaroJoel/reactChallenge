@@ -1,28 +1,12 @@
 @media (max-width: 990px){
     .powerstats{
-        cursor: pointer;
         position: fixed;
         bottom: 10px;
         right: 20px;
     }
 }
-.average{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.average span{
-    color:rgb(12, 201, 53);
-}
-.stats{
-    text-transform: uppercase;
-    color: rgb(12, 88, 201);
-}
-
 @media (min-width: 990px){
     .powerstats{
-        cursor: pointer;
         position: absolute;
         top: 15vh;
         right: 20px;

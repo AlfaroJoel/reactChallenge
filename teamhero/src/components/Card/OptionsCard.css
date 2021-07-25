@@ -1,8 +1,0 @@
-.options{
-    display: flex;
-    justify-content: space-around;
-    margin: 8px 10px;
-}
-.option__svg{
-    cursor: pointer;
-}

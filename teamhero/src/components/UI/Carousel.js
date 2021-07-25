@@ -33,7 +33,7 @@ const Carousel = ({ foundHeroes, messageHandler }) => {
             {foundHeroes && (foundHeroes.length > 1
                 ? (<>
                     <ButtonDefault variant='outline-secondary' onClick={previousHeroHandler} content={svgPrevious} />
-                    <HeroCard hero={foundHeroes[numHero]} isCardDelete={false} messageHandler={messageHandler}/>
+                    <HeroCard  hero={foundHeroes[numHero]} isCardDelete={false} messageHandler={messageHandler}/>
                     <ButtonDefault variant='outline-secondary' onClick={nextHeroHandler} content={svgNext} />
                 </>)
                 : <HeroCard key={foundHeroes[0].id} hero={foundHeroes[0]} isCardDelete={false} messageHandler={messageHandler}/>)

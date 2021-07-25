@@ -2,9 +2,8 @@ import { useState, useContext } from 'react';
 import UserContext from '../store/UserContext'
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-import { useHistory, Redirect } from 'react-router';
+import { useHistory } from 'react-router';
 import { Formik, Form, Field } from 'formik';
-import './LoginPage.css'
 
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
@@ -73,7 +72,7 @@ const LoginPage = () => {
     }
 
     return (
-        <div className='loginPage d-flex justify-content-center align-items-center'>
+        <div className='d-flex justify-content-center align-items-center max-h'>
             <Formik
                 initialValues={{ email: '', password: '' }}
                 onSubmit={handleSubmit}

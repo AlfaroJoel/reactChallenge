@@ -11,3 +11,13 @@ body {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+.max-h{
+  height: 82vh;
+}
+
+@media (min-width: 990px){
+  .max-lg-h{
+      height: 82vh;
+  }
+}

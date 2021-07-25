@@ -23,13 +23,13 @@ const Powerstats = props => {
                 <Modal.Body className='text-start mx-auto'>
                     {ctx.powerstats.map((stat) => {
                         return (<p key={stat.prop}>
-                           <span className='stats'>{stat.prop}</span> {': ' + stat.value}
+                           <span className='text-uppercase text-primary'>{stat.prop}</span> {': ' + stat.value}
                         </p>)
                     })}
                 </Modal.Body>
-                <Modal.Body className='average'>
-                    <p><span>Average height: </span>{ctx.statistics[0].value} cm</p>
-                    <p><span>Average weight: </span>{ctx.statistics[1].value} kg</p>
+                <Modal.Body className='text-center'>
+                    <p><span className='text-success'>Average height: </span>{ctx.statistics[0].value} cm</p>
+                    <p><span className='text-success'>Average weight: </span>{ctx.statistics[1].value} kg</p>
                 </Modal.Body>
                 <Button variant="dark" onClick={handleClick}>
                     Close

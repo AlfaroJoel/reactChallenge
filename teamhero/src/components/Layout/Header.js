@@ -20,12 +20,12 @@ const Header = () => {
     }
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar className='navbar-sticky' bg="dark" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand>TeamHero</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className='justify-content-end' id="basic-navbar-nav">
-                    <Nav  className='align-items-center'>
+                    <Nav className='align-items-center'>
                         <NavLink className='link my-2 mx-lg-4' to="/home">My Team</NavLink>
                         <NavLink className='link my-2 mx-lg-4' to="/search">Search Hero</NavLink>
                         <Button className='mx-5 my-2' variant="outline-light" onClick={buttonHandler}>Logout</Button>
