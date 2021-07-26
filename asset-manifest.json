@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/css/main.3709a21c.chunk.css",
+    "main.js": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/main.acb8aab3.chunk.js",
+    "main.js.map": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/main.acb8aab3.chunk.js.map",
+    "runtime-main.js": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/runtime-main.f2eb956e.js",
+    "runtime-main.js.map": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/runtime-main.f2eb956e.js.map",
+    "static/css/2.4be38407.chunk.css": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/css/2.4be38407.chunk.css",
+    "static/js/2.11614e1a.chunk.js": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/2.11614e1a.chunk.js",
+    "static/js/2.11614e1a.chunk.js.map": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/2.11614e1a.chunk.js.map",
+    "index.html": "/AlfaroJoel/reactChallenge/tree/master/teamhero/index.html",
+    "static/css/2.4be38407.chunk.css.map": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/css/2.4be38407.chunk.css.map",
+    "static/css/main.3709a21c.chunk.css.map": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/css/main.3709a21c.chunk.css.map",
+    "static/js/2.11614e1a.chunk.js.LICENSE.txt": "/AlfaroJoel/reactChallenge/tree/master/teamhero/static/js/2.11614e1a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f2eb956e.js",
+    "static/css/2.4be38407.chunk.css",
+    "static/js/2.11614e1a.chunk.js",
+    "static/css/main.3709a21c.chunk.css",
+    "static/js/main.acb8aab3.chunk.js"
+  ]
+}
