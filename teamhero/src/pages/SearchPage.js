@@ -17,28 +17,23 @@ const HeroSearch = () => {
     const [message, setMessage] = useState('');
     const [err, setErr] = useState(false);
 
+    const axios = require('axios');
+
     const callApiHero = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(endPoint + '/search/' + search);
-            if (!response.ok) {
-                throw new Error('Something went wrong!')
-            }
-            const data = await response.json();
-            if (data.response !== 'error') {
-                return data.results;
-            } else {
-                setFoundHeroes(null)
-            }
+            const response = await axios.get(endPoint + '/search/' + search)
+            return response.data.results;
 
         } catch (err) {
             console.log(err);
+            setFoundHeroes(null);
         }
     }
 
     useEffect(() => {
         if (search !== '') {
-            const searchTime = setTimeout(async () => {
+            const searchTime = setTimeout(async () => { // Cuando el usuario deje de teclear por 650 ms
                 const heroesFound = await callApiHero();
                 if (heroesFound) {
                     setFoundHeroes(heroesFound);

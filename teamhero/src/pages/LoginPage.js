@@ -12,7 +12,9 @@ const LoginPage = () => {
     const [error, setError] = useState('');
 
     const ctxUser = useContext(UserContext);
-    const history = useHistory()
+    const history = useHistory();
+
+    const axios = require('axios');
 
     const handleSubmit = async () => {
         setLoading(true);
@@ -48,22 +50,12 @@ const LoginPage = () => {
 
     const fetchApiLogin = async () => {
         try {
-            const response = await fetch('http://challenge-react.alkemy.org/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 'email': userEmail, 'password': userPass }) // body data type must match "Content-Type" header
-            });
-            if (!response.ok) {
-                throw new Error('Email or password invalid')
-            }
-            const data = await response.json();
-            if (data.response !== 'error') {
-                return data;
-            }else{
-                throw new Error(data.response)
-            }
+            const response = await axios.post('http://challenge-react.alkemy.org/', {
+                email: userEmail,
+                password: userPass
+            })
+
+            return response.data;
         } catch (err) {
             setError(err.message);
             setLoading(false);
