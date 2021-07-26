@@ -37,9 +37,14 @@ const HeroSearch = () => {
                 const heroesFound = await callApiHero();
                 if (heroesFound) {
                     setFoundHeroes(heroesFound);
+                    setIsLoading(false);
+                    setMessage('');
+                }else{
+                    setFoundHeroes(null);
+                    setIsLoading(false)
+                    setErr(true);
+                    setMessage('Hero not found');
                 }
-                setIsLoading(false);
-                setMessage('');
             }, 650)
 
             return () => {

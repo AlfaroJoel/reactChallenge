@@ -53,11 +53,16 @@ const LoginPage = () => {
             const response = await axios.post('http://challenge-react.alkemy.org/', {
                 email: userEmail,
                 password: userPass
-            })
-
-            return response.data;
+            });
+            if(response.status === 200){
+                return response.data;
+            }else{
+                setError(response.status)
+                setLoading(false);
+                return null;
+            }
         } catch (err) {
-            setError(err.message);
+            setError('Invalid email and/or password ');
             setLoading(false);
             return null;
         }
